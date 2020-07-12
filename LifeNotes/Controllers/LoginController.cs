@@ -27,10 +27,9 @@ namespace LifeNotes.Controllers
             }
             else
             {
-                return StatusCode(401);
+                return StatusCode(401, new { message = "sosaty"});
             }
         }
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -42,22 +41,9 @@ namespace LifeNotes.Controllers
             //}
             //else
             //{
-                return StatusCode(401);
+                return StatusCode(401, new { message = "sosaty" });
             //}
         }
-
-
-
-
-
-
-
-        //[HttpGet]
-        //public IActionResult mm()
-        //{
-        //    return StatusCode(201);
-        //}
-
 
     }
 }
