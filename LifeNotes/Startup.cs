@@ -45,12 +45,6 @@ namespace LifeNotes
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
             app.UseCors(
                 configurePolicy: corsPolicyBuilder =>
                 {
@@ -60,6 +54,14 @@ namespace LifeNotes
                     //corsPolicyBuilder.AllowCredentials();
                 }
             );
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            
         }
     }
 }
