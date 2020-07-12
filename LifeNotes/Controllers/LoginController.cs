@@ -27,10 +27,18 @@ namespace LifeNotes.Controllers
             }
             else
             {
-                return StatusCode(401, new { message = "Username or password is incorect."});
+                return StatusCode(401, new { message = "lala" });
             }
         }
-        
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            
+                return StatusCode(401, new { message = "lala"});
+            
+        }
+
 
     }
 }
