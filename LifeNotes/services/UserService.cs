@@ -25,6 +25,7 @@ namespace LifeNotes.services
         {
 
 
+
             return true;
         }
 
@@ -46,16 +47,16 @@ namespace LifeNotes.services
 
             UserDTO userDTO = new UserDTO();
 
-            if (userDB != null)
-            {
-                JwtService jwtService = new JwtService();
-                userDTO.Email = userDB.Email;
-                userDTO.Id = userDB.Id;
-                userDTO.Username = userDB.Username;
-                userDTO.Token = jwtService.CreateToken(authenticateModel);
-            }                
-                 
-            return userDTO;
+            //if (userDB != null)
+            //{
+            //    JwtService jwtService = new JwtService();
+            //    userDTO.Email = userDB.Email;
+            //    userDTO.Id = userDB.Id;
+            //    userDTO.Username = userDB.Username;
+            //    userDTO.Token = jwtService.CreateToken(authenticateModel);
+            //}
+            //return UserDTO;
+            return null;
         }
 
 
