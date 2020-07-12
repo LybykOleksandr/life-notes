@@ -15,26 +15,19 @@ namespace LifeNotes.Controllers
     public class RegistrationController : ControllerBase
     {
 
-        private UserService _userService;
-
-        public RegistrationController(UserService userService)
-        {
-            _userService = userService;
-        }
-
-
+        
 
         [HttpPost]
         public IActionResult Registrate(RegistrationModel registrationModel)
         {
-
-            if (_userService.Registrate(registrationModel))
+            UserService userService = new UserService();
+            if (userService.Registrate(registrationModel))
             {
                 return StatusCode(201);
             }
             else
             {
-                return StatusCode(409);
+                return StatusCode(409,new { message = "Email is alrady in use."});
             }
         }
     }
