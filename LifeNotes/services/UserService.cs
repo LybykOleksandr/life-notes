@@ -8,55 +8,55 @@ using LifeNotes.Models;
 
 namespace LifeNotes.services
 {
-    public interface IUserService
-    {
-        Task<User> Authenticate(string email, string password);
-        Task<IEnumerable<User>> GetAll();
-    }
-
-
-
-
-
-
-    //public class UserService : IUserService
+    //public interface IUserService
     //{
-    //    // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-    //    private List<User> _users = new List<User>
-    //    {
-    //        new User { Id = 1, Username = "Name", Password = "test123", Email = "test123" }
-    //    };
-
-    //    public async Task<User> Authenticate(string email, string password)
-    //    {
-    //        var user = await Task.Run(() => _users.SingleOrDefault(x => x.Email == email && x.Password == password));
-
-    //        // return null if user not found
-    //        if (user == null)
-    //            return null;
-
-    //        // authentication successful so return user details without password
-    //        return user.WithoutPassword();
-    //    }
-
-    //    public async Task<IEnumerable<User>> GetAll()
-    //    {
-    //        return await Task.Run(() => _users.WithoutPasswords());
-    //    }
+    //    Task<User> Authenticate(string email, string password);
+    //    Task<IEnumerable<User>> GetAll();
     //}
+
+
 
 
     public class UserService
     {
 
 
-        public bool Registration( RegistrationModel registrationModel)
+        public bool Registrate( RegistrationModel registrationModel)
         {
+
 
             return true;
         }
 
-        
+
+
+
+        public UserDTO Authenticate( AuthenticateModel authenticateModel)
+        {
+            // знайти логін якщо є хапнути сіль + до пароля і хешанути
+            PasswordService passwordService = new PasswordService();
+
+            UserDB userDB = null;
+
+            //if(passwordService.PasswordHash(authenticateModel.Password, Salt) == //UserDB.passHash)
+            //    {
+            //        return UserDB
+            //    }
+            //authenticateModel.Password += Salt
+
+            UserDTO userDTO = new UserDTO();
+
+            if (userDB != null)
+            {
+                JwtService jwtService = new JwtService();
+                userDTO.Email = userDB.Email;
+                userDTO.Id = userDB.Id;
+                userDTO.Username = userDB.Username;
+                userDTO.Token = jwtService.CreateToken(authenticateModel);
+            }                
+                 
+            return userDTO;
+        }
 
 
         //public bool ValidateLogin(string username)
@@ -103,9 +103,6 @@ namespace LifeNotes.services
             //if (this.Age < 1 || this.Age > 100)
             //    errors.Add(new ValidationResult("Недопустимый возраст"));
 
-
-
-            //чекнути юзернейм і мило в базі
 
 
             return errors;
